@@ -1,6 +1,6 @@
-# Load packages
+# I loaded tidyverse because I use its functions to work with the data.
 library(tidyverse)
-# Read raw data
+# I started by reading the original tuna catch data.
 raw_data <- read_csv("data/raw/CatchByFlagGear/CatchByFlagGear1918-2024.csv")
 View(raw_data)
 # Explore the raw data
@@ -9,7 +9,7 @@ glimpse(raw_data)
 names(raw_data)
 # Inspect the first rows of the raw data
 head(raw_data)
-# Rename columns to make them easier to work with
+# # First, I renamed the columns so they are easier to understand and use
 clean_data <- raw_data %>%
   rename(
     year = AnoYear,
@@ -104,7 +104,7 @@ clean_data %>%
 clean_data <- clean_data %>%
   mutate(catch_kt = catch_t / 1000)
 head(clean_data)
-# Save the processed data
+# # Finally, I saved the cleaned data so I can use it in the visualization script.
 write_rds(clean_data, "data/processed/tuna_clean.rds")
 file.exists("data/processed/tuna_clean.rds")
 
