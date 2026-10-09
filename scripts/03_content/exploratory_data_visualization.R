@@ -11,7 +11,7 @@ year_summary <- clean_data %>%
     .groups = "drop"
   )
 # Plot total catch over time
-ggplot(year_summary, aes(x = year, y = total_catch_kt)) +
+p_year <- ggplot(year_summary, aes(x = year, y = total_catch_kt)) +
   geom_line() +
   labs(
     title = "Total Tuna Catch Over Time",
@@ -19,9 +19,11 @@ ggplot(year_summary, aes(x = year, y = total_catch_kt)) +
     y = "Total Catch (kt)",
     caption = "Source: IATTC Catch by Flag and Gear dataset"
   )
+
 # Save the plot as a PNG file
 ggsave(
-  "results/img/total_tuna_catch_over_time.png",
+  filename = "results/img/total_tuna_catch_over_time.png",
+  plot = p_year,
   width = 8,
   height = 5,
   dpi = 300
@@ -35,7 +37,7 @@ species_summary <- clean_data %>%
   ) %>%
   arrange(desc(total_catch_kt))
 # Plot total catch by species
-ggplot(species_summary, aes(x = reorder(species, total_catch_kt), y = total_catch_kt)) +
+p_species <- ggplot(species_summary, aes(x = reorder(species, total_catch_kt), y = total_catch_kt)) +
   geom_col() +
   coord_flip() +
   labs(
@@ -44,9 +46,11 @@ ggplot(species_summary, aes(x = reorder(species, total_catch_kt), y = total_catc
     y = "Total Catch (kt)",
     caption = "Source: IATTC Catch by Flag and Gear dataset"
   )
+
 # Save the plot as a PNG file
 ggsave(
-  "results/img/total_catch_by_species.png",
+  filename = "results/img/total_catch_by_species.png",
+  plot = p_species,
   width = 8,
   height = 5,
   dpi = 300
@@ -60,7 +64,7 @@ gear_summary <- clean_data %>%
   ) %>%
   arrange(desc(total_catch_kt))
 # Plot total catch by gear type
-ggplot(gear_summary, aes(x = reorder(gear, total_catch_kt), y = total_catch_kt)) +
+p_gear <- ggplot(gear_summary, aes(x = reorder(gear, total_catch_kt), y = total_catch_kt)) +
   geom_col() +
   coord_flip() +
   labs(
@@ -69,13 +73,16 @@ ggplot(gear_summary, aes(x = reorder(gear, total_catch_kt), y = total_catch_kt))
     y = "Total Catch (kt)",
     caption = "Source: IATTC Catch by Flag and Gear dataset"
   )
+
 # Save the plot as a PNG file
 ggsave(
-  "results/img/total_catch_by_gear.png",
+  filename = "results/img/total_catch_by_gear.png",
+  plot = p_gear,
   width = 8,
   height = 5,
   dpi = 300
 )
+
 
 
 
